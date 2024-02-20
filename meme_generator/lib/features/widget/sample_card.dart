@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/core/entity/sample_entity.dart';
-import 'package:meme_generator/core/theme/custom_theme.dart';
 
 class SampleCard extends StatelessWidget {
   const SampleCard({super.key, required this.sample});
