@@ -71,7 +71,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreenSecondText> {
                               ),
                               Text(_displayTextUpper,
                                   textAlign: TextAlign.center,
-                                  style: theme.textTheme.bodyMedium),
+                                  style: theme.textTheme.titleLarge),
                             ],
                           ),
                         ),

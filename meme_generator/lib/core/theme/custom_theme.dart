@@ -29,7 +29,7 @@ const TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w700,
   ),
   titleLarge: TextStyle(
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: FontWeight.w700,
   ),
   headlineLarge: TextStyle(

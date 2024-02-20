@@ -2,15 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:meme_generator/core/entity/sample_entity.dart';
 import 'package:meme_generator/features/widget/sample_card.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Scaffold(
+        backgroundColor: theme.colorScheme.background,
+        appBar: AppBar(
+          title: Text(
+            'Страница с шаблонами',
+            style: theme.textTheme.headlineLarge,
+          ),
+          centerTitle: true,
+        ),
+        body: _NewsList());
+  }
 }
 
-class _HomePageState extends State<HomePage> {
-  final List<SampleEntity> samples = [];
+class _NewsList extends StatelessWidget {
+  final List<SampleEntity> samples = [
+    const SampleEntity(
+        title: "Базовый шаблон", urlToImage: "/assets/images/double_text.png"),
+    const SampleEntity(
+        title: "Двойной шаблон", urlToImage: "/assets/images/double_text.png"),
+  ];
 
   @override
   Widget build(BuildContext context) => ListView.separated(

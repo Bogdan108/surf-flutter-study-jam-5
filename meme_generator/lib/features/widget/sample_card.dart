@@ -27,11 +27,11 @@ class SampleCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
-              child: Image.asset(
-                sample.urlToImage,
-              ),
-            ),
+            // Expanded(
+            //   child: Image.asset(
+            //     sample.urlToImage,
+            //   ),
+            // ),
             const SizedBox(width: 16),
             Expanded(
               child: Column(

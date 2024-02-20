@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/core/theme/custom_theme.dart';
+import 'package:meme_generator/screen/meme_generator_many_pictires.dart';
 import 'package:meme_generator/screen/meme_generator_screen.dart';
+import 'package:meme_generator/screen/samples_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const MemeGeneratorScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/detail_page_double_text': (context) =>
+            const MemeGeneratorScreenSecondText(),
+        '/detail_page_single_picture': (context) => const MemeGeneratorScreen(),
+      },
     );
   }
 }
