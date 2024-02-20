@@ -32,6 +32,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
       ),
     );
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: theme.colorScheme.background,
       body: Container(
         padding: const EdgeInsets.all(10),

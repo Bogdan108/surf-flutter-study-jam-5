@@ -9,24 +9,29 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-        backgroundColor: theme.colorScheme.background,
-        appBar: AppBar(
-          title: Text(
-            'Страница с шаблонами',
-            style: theme.textTheme.headlineLarge,
-          ),
-          centerTitle: true,
+      backgroundColor: theme.colorScheme.background,
+      appBar: AppBar(
+        title: Text(
+          'Страница с шаблонами',
+          style: theme.textTheme.headlineLarge,
         ),
-        body: _NewsList());
+        centerTitle: true,
+      ),
+      body: _NewsList(),
+    );
   }
 }
 
 class _NewsList extends StatelessWidget {
   final List<SampleEntity> samples = [
     const SampleEntity(
-        title: "Базовый шаблон", urlToImage: "/assets/images/double_text.png"),
+        title: "Базовый шаблон",
+        urlToImage: "assets/images/single_picture.png",
+        route: "/detail_page_double_text"),
     const SampleEntity(
-        title: "Двойной шаблон", urlToImage: "/assets/images/double_text.png"),
+        title: "Двойной шаблон",
+        urlToImage: "assets/images/double_text.png",
+        route: "/detail_page_single_picture"),
   ];
 
   @override
