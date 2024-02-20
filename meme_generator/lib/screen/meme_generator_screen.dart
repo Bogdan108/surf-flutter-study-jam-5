@@ -159,17 +159,12 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
     ui.Image image = await boundary.toImage();
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData!.buffer.asUint8List();
-    if (pngBytes != null) {
-      // Получаем временную директорию
-      final directory = await getTemporaryDirectory();
-      // Создаём файл для картинки в этой директории
-      final imagePath = await File('${directory.path}/image.png').create();
-      // Записываем скриншот в файл
-      await imagePath.writeAsBytes(pngBytes);
 
-      // Делаем скриншот доступным для других приложений
-      await Share.shareFiles([imagePath.path],
-          text: 'Посмотри на мой скриншот!');
-    }
+    final directory = await getTemporaryDirectory();
+    final imagePath = await File('${directory.path}/image.png').create();
+    await imagePath.writeAsBytes(pngBytes);
+
+    await Share.shareXFiles([XFile(imagePath.path)],
+        text: 'Посмотри на мой скриншот!');
   }
 }

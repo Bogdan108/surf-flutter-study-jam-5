@@ -11,10 +11,10 @@ class SampleCard extends StatelessWidget {
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => ()),
+        // );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -25,7 +25,7 @@ class SampleCard extends StatelessWidget {
           color: theme.colorScheme.primary,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Row(
+        child: Column(
           children: [
             Expanded(
               child: Image.asset(
