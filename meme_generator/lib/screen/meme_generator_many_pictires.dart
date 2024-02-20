@@ -1,7 +1,12 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MemeGeneratorScreenSecondText extends StatefulWidget {
   const MemeGeneratorScreenSecondText({Key? key}) : super(key: key);
@@ -160,7 +165,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreenSecondText> {
               child: Container(
                 decoration: decoration,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: _capturePng,
                   icon: const Icon(Icons.share),
                 ),
               ),
@@ -182,5 +187,20 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreenSecondText> {
         debugPrint('No image selected.');
       }
     });
+  }
+
+  Future<void> _capturePng() async {
+    RenderRepaintBoundary boundary =
+        globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    ui.Image image = await boundary.toImage();
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+    final directory = await getTemporaryDirectory();
+    final imagePath = await File('${directory.path}/image.png').create();
+    await imagePath.writeAsBytes(pngBytes);
+
+    await Share.shareXFiles([XFile(imagePath.path)],
+        text: 'Посмотри на мой скриншот!');
   }
 }
