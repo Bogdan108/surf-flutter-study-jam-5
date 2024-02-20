@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/core/theme/custom_theme.dart';
+import 'package:meme_generator/screen/meme_generator_many_pictires.dart';
 import 'package:meme_generator/screen/meme_generator_screen.dart';
 
 void main() async {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const MemeGeneratorScreen(),
+      home: const MemeGeneratorScreenSecondText(),
     );
   }
 }

@@ -1,23 +1,25 @@
 import 'dart:io';
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'dart:typed_data';
-import 'package:flutter/rendering.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 
-class MemeGeneratorScreen extends StatefulWidget {
-  const MemeGeneratorScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class MemeGeneratorScreenSecondText extends StatefulWidget {
+  const MemeGeneratorScreenSecondText({Key? key}) : super(key: key);
 
   @override
-  State<MemeGeneratorScreen> createState() => _MemeGeneratorScreenState();
+  State<MemeGeneratorScreenSecondText> createState() =>
+      _MemeGeneratorScreenState();
 }
 
-class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
-  final TextEditingController _textEditingController = TextEditingController();
+class _MemeGeneratorScreenState extends State<MemeGeneratorScreenSecondText> {
+  final TextEditingController _textEditingControllerUpper =
+      TextEditingController();
+  final TextEditingController _textEditingControllerLower =
+      TextEditingController();
   final TextEditingController _urlController = TextEditingController();
-  String _displayText = 'Ваш текст может быть здесь';
+  String _displayTextUpper = 'Ваш текст может быть здесь';
+  String _displayTextLower = 'Ваш текст может быть здесь';
+
   Image? _image = Image.network(
       'https://i.cbc.ca/1.6713656.1679693029!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/this-is-fine.jpg');
   GlobalKey globalKey = GlobalKey();
@@ -50,20 +52,30 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       vertical: 20,
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: DecoratedBox(
-                            decoration: decoration,
-                            child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: _image),
+                      children: [
+                        DecoratedBox(
+                          decoration: decoration,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(
+                                width: double.infinity,
+                                height: 200,
+                                child: DecoratedBox(
+                                  decoration: decoration,
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: _image),
+                                ),
+                              ),
+                              Text(_displayTextUpper,
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.bodyMedium),
+                            ],
                           ),
                         ),
-                        Text(_displayText,
+                        Text(_displayTextLower,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodyLarge),
                       ],
@@ -76,9 +88,9 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               height: 20,
             ),
             TextField(
-              controller: _textEditingController,
+              controller: _textEditingControllerUpper,
               decoration: InputDecoration(
-                labelText: 'Enter Text',
+                labelText: 'Enter Upper Text',
                 labelStyle: theme.textTheme.titleMedium,
                 border: const OutlineInputBorder(),
                 fillColor: Colors.white,
@@ -86,7 +98,25 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               style: theme.textTheme.bodyMedium,
               onChanged: (text) {
                 setState(() {
-                  _displayText = text;
+                  _displayTextUpper = text;
+                });
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: _textEditingControllerLower,
+              decoration: InputDecoration(
+                labelText: 'Enter Lower Text',
+                labelStyle: theme.textTheme.titleMedium,
+                border: const OutlineInputBorder(),
+                fillColor: Colors.white,
+              ),
+              style: theme.textTheme.bodyMedium,
+              onChanged: (text) {
+                setState(() {
+                  _displayTextLower = text;
                 });
               },
             ),
@@ -129,7 +159,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               child: Container(
                 decoration: decoration,
                 child: IconButton(
-                  onPressed: _capturePng,
+                  onPressed: () {},
                   icon: const Icon(Icons.share),
                 ),
               ),
@@ -151,25 +181,5 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
         debugPrint('No image selected.');
       }
     });
-  }
-
-  Future<void> _capturePng() async {
-    RenderRepaintBoundary boundary =
-        globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage();
-    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    Uint8List pngBytes = byteData!.buffer.asUint8List();
-    if (pngBytes != null) {
-      // Получаем временную директорию
-      final directory = await getTemporaryDirectory();
-      // Создаём файл для картинки в этой директории
-      final imagePath = await File('${directory.path}/image.png').create();
-      // Записываем скриншот в файл
-      await imagePath.writeAsBytes(pngBytes);
-
-      // Делаем скриншот доступным для других приложений
-      await Share.shareFiles([imagePath.path],
-          text: 'Посмотри на мой скриншот!');
-    }
   }
 }
