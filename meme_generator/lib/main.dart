@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/detail_page_double_text': (context) =>
-            const MemeGeneratorScreenSecondText(),
-        '/detail_page_single_picture': (context) => const MemeGeneratorScreen(),
-      },
+      home: const MemeGeneratorScreen(),
+      // routes: {
+      //   '/': (context) => const HomePage(),
+      //   '/detail_page_double_text': (context) =>
+      //       const MemeGeneratorScreenSecondText(),
+      //   '/detail_page_single_picture': (context) => const MemeGeneratorScreen(),
+      // },
     );
   }
 }
