@@ -3,8 +3,9 @@
 ## Описание
 
 MemeGenerator - это мобильное приложение, разработанное на Flutter, предназначенное для создания и редактирования мемов. Приложение предлагает удобный и интуитивно понятный интерфейс, который позволяет пользователям легко создавать собственные мемы, используя разнообразные шаблоны и инструменты редактирования.
-<img src="https://github.com/Bogdan108/surf-flutter-study-jam-5/blob/study-jam-5/docs/images/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202024-02-20%20at%2020.14.59.png" width="500">
 <img src="https://github.com/Bogdan108/surf-flutter-study-jam-5/blob/study-jam-5/docs/images/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202024-02-20%20at%2020.11.32.png" width="500">
+<img src="https://github.com/Bogdan108/surf-flutter-study-jam-5/blob/study-jam-5/docs/images/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202024-02-20%20at%2020.14.59.png" width="500">
+
 
 ## Функциональность
 
@@ -12,3 +13,6 @@ MemeGenerator - это мобильное приложение, разработ
 - Редактор мемов: После выбора категории пользователь переходит в редактор, где можно добавить свой текст, выбрать картинку из галереи или загрузить картинку через ссылку.
 - Экспорт и деление: Созданные мемы можно сохранять в галерее устройства или делиться ими с друзьями через социальные сети.
 - Тема приложения: Приложение поддерживает светлую и темную тему, все шрифты и стили используются из основной темы приложения.
+
+<img src="https://github.com/Bogdan108/surf-flutter-study-jam-5/blob/study-jam-5/docs/images/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202024-02-20%20at%2020.15.07.png" width="500">
+<img src="https://github.com/Bogdan108/surf-flutter-study-jam-5/blob/study-jam-5/docs/images/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202024-02-20%20at%2020.16.34.png" width="500">
