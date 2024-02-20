@@ -19,6 +19,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //final theme = Theme.of(context);
     final decoration = BoxDecoration(
       border: Border.all(
         color: Colors.white,
@@ -96,7 +97,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                 labelText: 'Enter URL',
                 labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(),
-                fillColor: Colors.white,
+                fillColor: Colors.grey,
               ),
               style: const TextStyle(color: Colors.white),
               onChanged: (url) {
